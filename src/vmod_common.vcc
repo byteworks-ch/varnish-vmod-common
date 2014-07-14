@@ -1,0 +1,12 @@
+Module common
+Init init_function
+Function STRING toupper(STRING_LIST)
+Function STRING tolower(STRING_LIST)
+Function STRING substr(STRING, INT, INT)
+Function INT strlen(STRING_LIST)
+Function REAL random(REAL, REAL)
+Function INT duration2integer(DURATION)
+Function STRING duration2string(DURATION)
+#Function INT string2integer(STRING)
+#Function DURATION string2duration(STRING)
+Function STRING version()

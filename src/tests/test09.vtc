@@ -1,0 +1,24 @@
+varnishtest "Test common vmod"
+
+server s1 {
+       rxreq
+       txresp
+} -start
+
+varnish v1 -vcl+backend {
+	import common from "${vmod_topbuild}/src/.libs/libvmod_common.so";
+
+	sub vcl_fetch {
+		set beresp.ttl = 2d;
+		set beresp.http.x-test = common.duration2integer(beresp.ttl);
+	}
+} -start
+
+client c1 {
+	txreq -url "/"
+	rxresp
+	expect resp.http.x-test == "172800"
+}
+
+client c1 -run
+
